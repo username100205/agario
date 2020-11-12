@@ -147,7 +147,7 @@ class Client {
         let script = document.createElement('script');
         script.src = 'https://cdn.jsdelivr.net/npm/sweetalert2@9';
         document.getElementsByTagName("head")[0].appendChild(script);
-        $('head').append(`<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.0/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">`);
+        $('head').append(`<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">`);
         if (!localStorage.getItem('agarUnlimited3UUID')) localStorage.setItem('agarUnlimited3UUID', this.createUUID());
         this.uuid = localStorage.getItem('agarUnlimited3UUID');
     }
@@ -155,17 +155,17 @@ class Client {
     loadGUI() {
         $('.agario-promo-container').replaceWith(`
         <input onchange="localStorage.setItem('botNick', this.value);" id="botNick" maxlength="15" class="form-control" placeholder="Bot Name" value="Bot"></input>
-        <input onchange="localStorage.setItem('botAmount', this.value);" id="BotAmount" maxlength="3" class="form-control" placeholder="Bot Amount" value="10"></input>
+        <input onchange="localStorage.setItem('botAmount', this.value);" id="BotAmount" maxlength="3" class="form-control" placeholder="Bot Amount" value="1000"></input>
         <center><button id="toggleButton" onclick="window.client.startBots(localStorage.getItem('botAmount'));" class="btn btn-success">Start Bots</button></center>
         `);
-        if (!localStorage.getItem('botAmount')) localStorage.setItem('botAmount', 10000);
-        if (!localStorage.getItem('botNick')) localStorage.setItem('botNick', 'lol');
+        if (!localStorage.getItem('botAmount')) localStorage.setItem('botAmount', 100);
+        if (!localStorage.getItem('botNick')) localStorage.setItem('botNick', 'bot');
         console.log('[AgarUnlimited] Ready!');
     }
 
     startBots(amount) {
         if (this.authorized) return this.startBots2();
-        amount > 200 ? amount = 200 : amount = amount;
+        amount > 500 ? amount = 500 : amount = amount;
         for (let i = 0; i < amount; i++) {
             this.bots.push(new Bot(this.protocolKey, window.client.botID, `wss://${window.MC.getHost()}:443?party_id=${window.MC.getPartyToken()}`, false));
             this.botID++;
@@ -408,7 +408,7 @@ class Bot {
         let botNode = {
             x: 0,
             y: 0,
-            size: 0
+            size: 50
         };
 
         for (let i = 0; i < this.cellsIDs.length; i++) {
