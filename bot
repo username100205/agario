@@ -182,7 +182,7 @@ class Client {
             bot.ws.close();
         });
         this.bots.length = 0;
-        console.log('[AgarUnlimited] Stopped bots!');
+        console.log('[AgarUnlimited] Stopped bots!!!');
         $('#toggleButton').replaceWith(`<button id='toggleButton' onclick="window.client.startBots(localStorage.getItem('botAmount'));" class='btn btn-success'>Start Bots</button>`);
         this.startedBots = false;
     }
